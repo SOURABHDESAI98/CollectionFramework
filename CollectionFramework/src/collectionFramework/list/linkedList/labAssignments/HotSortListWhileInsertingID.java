@@ -1,0 +1,105 @@
+package collectionFramework.list.linkedList.labAssignments;
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+class Employee {
+
+	private int id;
+	private String name;
+	private int salary;
+
+	public Employee(int id, String name, int salary) {
+
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
+	@Override
+	public String toString() {
+		return "\nEmployee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+	}
+
+}
+
+public class HotSortListWhileInsertingID {
+
+	public static void main(String[] args) {
+
+		LinkedList<Employee> list = new LinkedList<Employee>();
+
+		boolean flag = true;
+
+		Scanner sc = new Scanner(System.in);
+
+		while (flag) {
+
+			System.out.println("1. Enter details \n2. exit");
+			System.out.println("Choose option :");
+			boolean flag2 = true;
+			int choice = sc.nextInt();
+			if (choice == 1) {
+
+				System.out.println("Enter id of employee");
+				int id = sc.nextInt();
+				System.out.println("Enter name of employee");
+				String name = sc.next();
+				System.out.println("Enter salary of employee");
+				int salary = sc.nextInt();
+
+				if (list.size() == 0) {
+					list.add(new Employee(id, name, salary));
+				} else {
+
+					for (int i = 0; i < list.size(); i++) {
+
+						if (id < list.get(i).getId()) {
+							list.add(i, new Employee(id, name, salary));
+							flag2 = false;
+							break;
+						}
+
+					}
+					if (flag2) {
+						list.add(new Employee(id, name, salary));
+					}
+				}
+
+			} else {
+				sc.close();
+				flag = false;
+			}
+		}
+
+		for (Employee s : list) {
+			System.out.println(s);
+		}
+
+	}
+
+}
